@@ -457,7 +457,7 @@ phoneBodyParser = list $ digit ||| is '.' ||| is '-'
 -- >>> isErrorResult (parse phoneParser "a123-456")
 -- True
 phoneParser :: Parser Chars
-phoneParser = (\a b c -> a :. b ++ pure c) <$> digit <*> phoneBodyParser <*> is '#'
+phoneParser = (:.) <$> digit <*> phoneBodyParser <* is '#'
 
 -- | Write a parser for Person.
 --
